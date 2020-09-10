@@ -1,8 +1,7 @@
 <template>
-  <div id="app">
-  <h1>Hello World</h1>
-  </div>
+    <div id="app">
+        <router-view />
+    </div>
 </template>
 
-<style>
-</style>
+<style></style>
