@@ -3,9 +3,10 @@
         <div class="welcome container">
             <div class="card">
                 <h2 class="teal-text">Welcome</h2>
-                <form action="" @submit.prevent="enterChat">
+                <form class="p" @submit.prevent="enterChat">
                     <label for="name">Enter your name: </label>
                     <input type="text" name="name" v-model="name" />
+                    <p class="red-text" v-show="feedback">{{feedback}}</p>
                     <button class="btn teal">Enter Chat<i class="material-icons right">send</i></button>
                 </form>
             </div>
@@ -22,6 +23,7 @@ export default {
     data() {
         return {
             name: null,
+            feedback: null,
         };
     },
     components: {
@@ -29,7 +31,11 @@ export default {
     },
     methods: {
         enterChat() {
-            console.log(this.name);
+            if ( this.name ){
+                    this.$router.push({name: 'Chat', params: {name: this.name}})
+                } else{
+                        this.feedback="You Must Enter A Username."
+                    }
         },
     },
 };
@@ -46,5 +52,4 @@ export default {
 .welcome button {
     margin: 30px auto;
 }
-
 </style>
