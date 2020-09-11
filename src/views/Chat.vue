@@ -5,8 +5,9 @@
             <div class="card-content">
                 <ul class="messages">
                     <li v-for="message in messages" :key="message.id">
-                        <span class="teal-text"> {{ message.name }} </span>
+                        <span class="teal-text"> {{ message.name }}: </span>
                         <span class="grey-text text-darken"> {{ message.content }} </span>
+                        <br />
                         <span class="grey-text time"> {{ message.timestamp }}</span>
                     </li>
                 </ul>
@@ -21,6 +22,8 @@
 <script>
 import NewMessage from "@/components/NewMessage.vue";
 import db from "@/firebase/init";
+import moment from "moment";
+
 export default {
     name: "Chat",
     props: ["name"],
@@ -43,7 +46,7 @@ export default {
                         id: doc.id,
                         name: doc.data().name,
                         content: doc.data().content,
-                        timestamp: doc.data().timestamp,
+                        timestamp: moment(doc.data().timestamp).format("lll"),
                     });
                 }
             });
@@ -60,8 +63,21 @@ export default {
 .chat span {
     font-size: 1.4em;
 }
-.chat time {
+.chat .time {
     display: block;
-    font-size: 1.2em;
+    font-size: 1.1em;
+}
+.messages {
+    max-height: 300px;
+    overflow: auto;
+}
+.messages::-webkit-scrollbar {
+    width: 2px;
+}
+.messages::-webkit-scrollbar-track {
+    background: #ddd;
+}
+.messages::-webkit-scrollbar-thumb {
+    background: #aaa;
 }
 </style>
