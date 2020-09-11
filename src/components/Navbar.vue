@@ -1,9 +1,9 @@
 <template>
     <nav>
-        <div class="nav-wrapper">
-            <span class="brand-logo" >GeoChat</span>
+        <div class="nav-wrapper teal">
+            <div class="brand-logo"><router-link :to="{name: 'Welcome'}">GoeChat</router-link></div>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="#">Login</a></li>
+                <li><router-link :to="{name: 'Login'}">Login</router-link></li>
             </ul>
         </div>
     </nav>
